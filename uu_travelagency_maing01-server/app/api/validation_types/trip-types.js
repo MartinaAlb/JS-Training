@@ -8,6 +8,10 @@ const tripListDtoInType = shape({
   })
 });
 
+const tripGetDtoInType = shape({
+  id: id().isRequired(),
+});
+
 const tripCreateDtoInType = shape({
   name: uu5String(255).isRequired(),
   text: uu5String(4000).isRequired("image"),
@@ -17,4 +21,21 @@ const tripCreateDtoInType = shape({
   departureDate: uu5String(20),
   pricePerPerson: uu5String(20),
   participantIdList: array(id(), 1, 10),
+});
+
+const tripUpdateDtoInType = shape({
+  id: id().isRequired(),
+  name: uu5String(255),
+  text: uu5String(4000),
+  locationIdList: array(id(), 10),
+  image: binary(),
+  capacity: uu5String(20),
+  departureDate: uu5String(20),
+  pricePerPerson: uu5String(20),
+  participantIdList: array(id(), 1, 10),
+  deleteImage: boolean(),
+});
+
+const tripDeleteDtoInType = shape({
+  id: id().isRequired()
 });

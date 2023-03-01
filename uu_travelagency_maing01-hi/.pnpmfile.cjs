@@ -32,7 +32,7 @@ function readPackage(pkg) {
     }
   }
 
-  // hide peer dependency warning from enzyme/react-hot-loader in nodejs-app project
+  // hide peer dependency warnings from enzyme/react-hot-loader in nodejs-app project
   if (pkg.peerDependencies) {
     delete pkg.peerDependencies["react"];
     delete pkg.peerDependencies["react-dom"];

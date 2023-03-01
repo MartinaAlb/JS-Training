@@ -7,40 +7,25 @@ const Warnings = require("../../api/warnings/trip-warnings");
 const InstanceChecker = require("../../component/instance-checker");
 const { Profiles, Schemas, Trips } = require("../constants");
 
-const DEFAULTS = {
-  sortBy: "name",
-  order: "asc",
-  pageIndex: 0,
-  pageSize: 100,
-};
-
-class ListAbl {
+class GetAbl {
   constructor() {
     this.validator = Validator.load();
     this.dao = DaoFactory.getDao(Schemas.TRIP);
   }
 
-  async list(awid, dtoIn, authorizationResult) {
+  async get(awid, dtoIn, authorizationResult) {
     let uuAppErrorMap = {};
 
     // hds 1, 1.1
-    const validationResult = this.validator.validate("tripListDtoInType", dtoIn);
+    const validationResult = this.validator.validate("tripGetDtoInType", dtoIn);
     // 1.2, 1.2.1, 1.3, 1.3.1
     uuAppErrorMap = ValidationHelper.processValidationResult(
       dtoIn,
       validationResult,
       uuAppErrorMap,
-      Warnings.List.UnsupportedKeys.code,
-      Errors.List.InvalidDtoIn
+      Warnings.Get.UnsupportedKeys.code,
+      Errors.Get.InvalidDtoIn
     );
-
-    // 1.4
-    if (!dtoIn.sortBy) dtoIn.sortBy = DEFAULTS.sortBy;
-    if (!dtoIn.order) dtoIn.order = DEFAULTS.order;
-    if (!dtoIn.pageInfo) dtoIn.pageInfo = {};
-    if (!dtoIn.pageInfo.pageSize) dtoIn.pageInfo.pageSize = DEFAULTS.pageSize;
-    if (!dtoIn.pageInfo.pageIndex) dtoIn.pageInfo.pageIndex = DEFAULTS.pageIndex;
-
 
     // hds 2
     const allowedStateRules = {
@@ -53,23 +38,20 @@ class ListAbl {
       awid,
       allowedStateRules,
       authorizationResult,
-      Errors.List,
+      Errors.Get,
       uuAppErrorMap
     );
 
     // hds 3
-    let list;
-    if (dtoIn.locationIdList) {
-      // 3.A
-      list = await this.dao.listByLocationIdList(awid, dtoIn.locationIdList, dtoIn.sortBy, dtoIn.order, dtoIn.pageInfo);
-    } else {
-      // 3.B
-      list = await this.dao.list(awid, dtoIn.sortBy, dtoIn.order, dtoIn.pageInfo);
+    const trip = await this.dao.get(awid, dtoIn.id);
+    if (!trip) {
+      // 3.1
+      throw new Errors.Get.TripDoesNotExist(uuAppErrorMap, { tripId: dtoIn.id });
     }
 
     // hds 4
     const dtoOut = {
-      ...list,
+      ...trip,
       uuAppErrorMap,
     };
 
@@ -77,4 +59,4 @@ class ListAbl {
   }
 }
 
-module.exports = new ListAbl();
+module.exports = new GetAbl();

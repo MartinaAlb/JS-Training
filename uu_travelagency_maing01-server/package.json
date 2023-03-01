@@ -5,9 +5,10 @@
   "license": "License Commercial",
   "spec": "nodejs-app; uu_appg01_devkit@5.8.1",
   "dependencies": {
+    "file-type": "^18.2.1",
+    "uu_appg01_binarystore-cmd": "^3.0.0",
     "uu_appg01_server": "^5.0.0",
-    "uu_apprepresentationg01": "^2.0.0",
-    "uu_appg01_binarystore-cmd": "^3.0.0"
+    "uu_apprepresentationg01": "^2.0.0"
   },
   "devDependencies": {
     "uu_appg01_devkit": "^5.8.1",

@@ -33,6 +33,22 @@
       "trip/list": {
         "sysStateList": ["active"],
         "profileList": ["Authorities", "Executives", "Readers"]
+      },
+      "trip/get": {
+        "sysStateList": ["active"],
+        "profileList": ["Authorities", "Executives", "Readers"]
+      },
+      "trip/create": {
+        "sysStateList": ["active"],
+        "profileList": ["Authorities", "Executives"]
+      },
+      "trip/update": {
+        "sysStateList": ["active"],
+        "profileList": ["Authorities", "Executives"]
+      },
+      "trip/delete": {
+        "sysStateList": ["active"],
+        "profileList": ["Authorities", "Executives"]
       }
     }
   }

@@ -30,7 +30,37 @@
         "realization": "api/controllers/TripController.list",
         "httpMethod": "GET",
         "type": "CMD"
+      },
+      "trip/get": {
+        "realization": "api/controllers/TripController.get",
+        "httpMethod": "GET",
+        "type": "CMD",
+        "dtoInAuditMap": {
+          "id": "$.id"
+        }
+      },
+      "trip/create": {
+        "realization": "api/controllers/TripController.create",
+        "httpMethod": "POST",
+        "type": "CMD"
+      },
+      "trip/update": {
+        "realization": "api/controllers/TripController.update",
+        "httpMethod": "POST",
+        "type": "CMD",
+        "dtoInAuditMap": {
+          "id": "$.id"
+        }
+      },
+      "trip/delete": {
+        "realization": "api/controllers/TripController.delete",
+        "httpMethod": "POST",
+        "type": "CMD",
+        "dtoInAuditMap": {
+          "id": "$.id"
+        }
       }
     }
   }
 }
+
