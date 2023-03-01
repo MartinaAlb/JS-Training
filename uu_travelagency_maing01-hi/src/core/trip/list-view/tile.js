@@ -99,7 +99,7 @@ export const Tile = createVisualComponent({
 function Header({ trip }) {
   return (
     <Text category="interface" segment="title" type="micro" colorScheme="building">
-      {trip.name}
+      {[trip.name, trip.text]}
     </Text>
   );
 }
@@ -108,8 +108,7 @@ function Footer({ trip }) {
   trip.departureDate = undefined;
   return (
     <Text category="interface" segment="title" type="micro" colorScheme="building">
-      {trip.name}
-      {trip.departureDate}
+      {trip.text}
     </Text>
   );
 }
