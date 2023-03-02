@@ -23,6 +23,8 @@ export const ListProvider = createComponent({
       handlerMap: {
         load: handleLoad,
         loadNext: handleLoadNext,
+        reload: handleReload,
+        create: handleCreate,
       },
       itemHandlerMap: {
         getImage: handleGetImage,
@@ -57,6 +59,10 @@ export const ListProvider = createComponent({
       return Calls.Trip.list(dtoIn);
     }
 
+    function handleReload() {
+      return handleLoad({ filterList: filterList.current, sorterList: sorterList.current });
+    }
+
     async function handleGetImage(trip) {
       const dtoIn = { code: trip.image };
       const imageFile = await Calls.Trip.getImage(dtoIn);
@@ -68,6 +74,10 @@ export const ListProvider = createComponent({
       const imageUrl = URL.createObjectURL(imageFile);
       imageUrlListRef.current.push(imageUrl);
       return imageUrl;
+    }
+
+    function handleCreate(values) {
+      return Calls.Trip.create(values);
     }
 
     useEffect(() => {

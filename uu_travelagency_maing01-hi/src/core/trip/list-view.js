@@ -1,10 +1,12 @@
 //@@viewOn:imports
-import { createVisualComponent, useCallback, Utils, PropTypes, Lsi, useLsi, useRoute } from "uu5g05";
-import Uu5Elements, { useAlertBus } from "uu5g05-elements";
+import { createVisualComponent, useCallback, Utils, PropTypes, Lsi, useLsi, useRoute, useState, useSession } from "uu5g05";
+import Uu5Elements, { Link, useAlertBus } from "uu5g05-elements";
+import { useSystemData } from "uu_plus4u5g02";
 import { ControllerProvider } from "uu5tilesg02";
 import { FilterButton, SorterButton } from "uu5tilesg02-controls";
 import Content from "./list-view/content";
 import DataListStateResolver from "../data-list-state-resolver";
+import CreateModal from "./list-view/create-modal";
 import Config from "./config/config";
 import importLsi from "../../lsi/import-lsi";
 //@@viewOff:imports
@@ -33,8 +35,11 @@ const ListView = createVisualComponent({
 
   render(props) {
     //@@viewOn:private
+    const { identity } = useSession();
     const lsi = useLsi(importLsi, [ListView.uu5Tag]);
+    const { data: systemData } = useSystemData();
     const { addAlert } = useAlertBus();
+    const [createData, setCreateData] = useState({ shown: false });
     const [, setRoute] = useRoute();
 
     const showError = useCallback(
@@ -67,18 +72,86 @@ const ListView = createVisualComponent({
       },
       [props.tripDataList, showError]
     );
+    useCallback(() => {
+      setCreateData({ shown: true });
+    }, [setCreateData]);
+
+    const handleCreate = useCallback(() => {
+      setCreateData({ shown: true });
+    }, [setCreateData]);
+
+    const handleCreateDone = (trip) => {
+      setCreateData({ shown: false });
+      showCreateSuccess(trip);
+
+      try {
+        // HINT: The filtering and sorting is done on the server side.
+        // There is no business logic about these on the client side.
+        // Therefore we need to reload data to properly show new item
+        // on the right place according filters, sorters and pageInfo.
+        props.tripDataList.handlerMap.reload();
+      } catch (error) {
+        ListView.logger.error("Error creating trip", error);
+        showError(error);
+      }
+    };
+
+    const handleCreateCancel = () => {
+      setCreateData({ shown: false });
+    };
+
+    function showCreateSuccess(trip) {
+      const message = (
+        <>
+          <Lsi import={importLsi} path={[ListView.uu5Tag, "createSuccessPrefix"]} />
+
+          <Link colorSchema="primary" onClick={() => handleDetail({ id: trip.id })}>
+            {trip.name}
+          </Link>
+
+          <Lsi import={importLsi} path={[ListView.uu5Tag, "createSuccessSuffix"]} />
+        </>
+      );
+
+      addAlert({ message, priority: "success", durationMs: 5000 });
+    }
 
     const handleDetail = (trip) => {
       setRoute("tripDetail", { id: trip.id });
+    };
+
+    // Defining permissions
+    //debugger
+    const profileList = systemData.profileData.uuIdentityProfileList;
+    const isAuthority = profileList.includes("Authorities");
+    const isExecutive = profileList.includes("Executives");
+    function isOwner(trip) {
+      return identity?.uuIdentity === trip.uuIdentity;
+    }
+
+    const tripsPermissions = {
+      trip: {
+        canCreate: () => isAuthority || isExecutive || true,
+        canManage: (trip) => isAuthority || (isExecutive && isOwner(trip)),
+      },
     };
     //@@viewOff:private
 
     //@@viewOn:render
     const attrs = Utils.VisualComponent.getAttrs(props);
-    const actionList = getActions(props);
+    const actionList = getActions(props, tripsPermissions, { handleCreate });
 
     return (
       <>
+        {createData.shown && (
+          <CreateModal
+            tripDataList={props.tripDataList}
+            locationDataList={props.locationDataList}
+            shown={true}
+            onSaveDone={handleCreateDone}
+            onCancel={handleCreateCancel}
+          />
+        )}
         <ControllerProvider
           data={props.tripDataList.data}
           filterDefinitionList={getFilters(props.locationDataList, lsi)}
@@ -101,6 +174,7 @@ const ListView = createVisualComponent({
                 <Content
                   tripDataList={props.tripDataList}
                   locationDataList={props.locationDataList}
+                  tripsPermissions={tripsPermissions}
                   onLoadNext={handleLoadNext}
                   onDetail={handleDetail}
                 />
@@ -145,7 +219,7 @@ function getSorters(lsi) {
   ];
 }
 
-function getActions(props) {
+function getActions(props, tripsPermissions, { handleCreate }) {
   const actionList = [];
 
   if (props.tripDataList.data) {
@@ -155,6 +229,16 @@ function getActions(props) {
 
     actionList.push({
       component: SorterButton,
+    });
+  }
+
+  if (tripsPermissions.trip.canCreate()) {
+    actionList.push({
+      icon: "mdi-plus",
+      children: <Lsi import={importLsi} path={[ListView.uu5Tag, "createTrip"]} />,
+      primary: true,
+      onClick: handleCreate,
+      disabled: props.disabled,
     });
   }
 

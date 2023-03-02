@@ -33,14 +33,14 @@
     "home": "Welcome",
     "about": "About Application",
     "trips": "Trips"
-    },
+  },
   "UuTravelagency.Core.Trip.ListView": {
     "header": "Travel Agency",
     "info": "<uu5string/>The list shows all trips from the database with possibility of filtering and sorting. e <UU5.Bricks.Code>Authorities</UU5.Bricks.Code> or <UU5.Bricks.Code>Executives</UU5.Bricks.Code> are allowed to create jokes. New jokes are visible only to authors and <UU5.Bricks.Code>Authorities</UU5.Bricks.Code> unless <UU5.Bricks.Code>Authorities</UU5.Bricks.Code> accept them visible for all. If you like particular joke you can easily copy it as component and place everywhere the dynamic content is supported (e.g. uuDockit). For more details visit documentation of the component <UU5.Bricks.Link href='https://uuapp.plus4u.net/uu-bookkit-maing01/71f8d7b5cfdc4336b0abfe47b3cb237b/book/page?code=UuJokesJokeList' target='_blank'>UuJokes.Joke.List</UU5.Bricks.Link>.",
     "location": "Location",
     "name": "Name"
   },
-  "UuJokes.Core.Trip.ListView.Content": {
+  "UuTravelagency.Core.Trip.ListView.Content": {
     "location": "Location",
     "name": "Name",
     "text": "Text",
@@ -50,13 +50,23 @@
     "participantIdList": "Participant List",
     "noTrips": "No trips"
   },
-  "UuJokes.Core.Joke.DetailView": {
+  "UuTravelagency.Core.Trip.DetailView": {
     "info": "<uu5string/>The component shows particular joke from database. For more details visit documentation of the component <UU5.Bricks.Link href='https://uuapp.plus4u.net/uu-bookkit-maing01/71f8d7b5cfdc4336b0abfe47b3cb237b/book/page?code=UuJokesJokeDetail' target='_blank'>UuJokes.Joke.Detail</UU5.Bricks.Link>."
   },
-  "UuJokes.Core.Joke.DetailView.Content": {
-    "oneVotes": "%d vote",
-    "fewVotes": "%d votes",
-    "otherVotes": "%d votes"
+  "UuTravelagency.Core.Trip.ListView.CreateModal": {
+    "name": "Name",
+    "text": "Text",
+    "image": "Image",
+    "location": "Location",
+    "capacity": "Capacity",
+    "departureDate": "Departure Date",
+    "pricePerPerson": "Price Per Person",
+    "participantIdList": "Participant List",
+    "header": "Create trip",
+    "info": "You can create the trip...",
+    "submit": "Create",
+    "cancel": "Cancel",
+    "textOrFile": "Text or image must be provided."
   }
-  }
+}
 

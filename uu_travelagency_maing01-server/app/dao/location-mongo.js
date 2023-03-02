@@ -28,6 +28,14 @@ class LocationMongo extends UuObjectDao {
 
     return await super.find(filter, pageInfo, sort);
   }
+
+  async listByIdList(awid, locationIdList) {
+    const filter = {awid, locationId : locationIdList};
+
+    return await super.find(filter)
+  }
 }
+
+
 
 module.exports = LocationMongo;

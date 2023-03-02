@@ -85,8 +85,8 @@ class CreateAbl {
       if (invalidLocations.length > 0) {
         ValidationHelper.addWarning(
           uuAppErrorMap,
-          Warnings.Create.locationDoesNotExist.code,
-          Warnings.Create.locationDoesNotExist.message,
+          Warnings.Create.LocationDoesNotExist.code,
+          Warnings.Create.LocationDoesNotExist.message,
           { locationIdList: invalidLocations }
         );
       }

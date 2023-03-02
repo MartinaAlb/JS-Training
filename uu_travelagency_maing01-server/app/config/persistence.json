@@ -11,7 +11,7 @@
         },
         "location": {
           "realization": "dao/LocationMongo",
-          "maxNoi": 128
+          "maxNoi": 100
         },
         "trip": {
           "realization": "dao/TripMongo",
