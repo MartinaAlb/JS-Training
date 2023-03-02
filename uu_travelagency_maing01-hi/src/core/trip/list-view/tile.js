@@ -1,7 +1,7 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
 import "uu5g04-bricks";
-import { createVisualComponent, Utils, useEffect } from "uu5g05";
+import { createVisualComponent, Utils, useEffect, PropTypes } from "uu5g05";
 import Uu5Elements, { Pending, Text } from "uu5g05-elements";
 import Config from "./config/config";
 //@@viewOff:imports
@@ -35,7 +35,9 @@ export const Tile = createVisualComponent({
   //@@viewOff:statics
 
   //@@viewOn:propTypes
-  propTypes: {},
+  propTypes: {
+    onDetail: PropTypes.func,
+  },
   //@@viewOff:propTypes
 
   //@@viewOn:defaultProps
@@ -58,6 +60,10 @@ export const Tile = createVisualComponent({
           .catch((error) => Tile.logger.error("Error loading image", error));
       }
     }, [tripDataObject]);
+
+    const handleDetail = () => {
+      props.onDetail(tripDataObject.data);
+    };
     //@@viewOff:private
 
     //@@viewOn:render
@@ -74,7 +80,7 @@ export const Tile = createVisualComponent({
         borderRadius="elementary"
       >
         {(tile) => (
-          <div className={Css.content()}>
+          <div className={Css.content()} onClick={handleDetail}>
             {trip.text && !trip.image && (
               <Text
                 category="interface"
@@ -105,10 +111,9 @@ function Header({ trip }) {
 }
 
 function Footer({ trip }) {
-  trip.departureDate = undefined;
   return (
     <Text category="interface" segment="title" type="micro" colorScheme="building">
-      {trip.text}
+      {[trip.departureDate, trip.pricePerPerson]}
     </Text>
   );
 }

@@ -25,6 +25,10 @@ const Calls = {
       const commandUri = Calls.getCommandUri("uu-app-binarystore/getBinaryData");
       return Calls.call("get", commandUri, dtoIn);
     },
+    get(dtoIn) {
+      const commandUri = Calls.getCommandUri("trip/get");
+      return Calls.call("get", commandUri, dtoIn);
+    }
   },
 
   Location: {
