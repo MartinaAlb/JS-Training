@@ -37,6 +37,8 @@ export const Tile = createVisualComponent({
   //@@viewOn:propTypes
   propTypes: {
     onDetail: PropTypes.func,
+    onUpdate: PropTypes.func,
+    tripsPermissions: PropTypes.object,
   },
   //@@viewOff:propTypes
 
@@ -64,6 +66,25 @@ export const Tile = createVisualComponent({
     const handleDetail = () => {
       props.onDetail(tripDataObject.data);
     };
+
+    function handleUpdate(event) {
+      event.stopPropagation();
+      props.onUpdate(tripDataObject);
+    }
+
+    function getItemActions() {
+      const actionList = [];
+
+      if (props.tripsPermissions.trip.canManage) {
+        actionList.push({
+          icon: "mdi-pencil",
+          onClick: handleUpdate,
+          //disabled: actionsDisabled,
+        });
+      }
+
+      return actionList;
+    }
     //@@viewOff:private
 
     //@@viewOn:render
@@ -76,12 +97,14 @@ export const Tile = createVisualComponent({
         header={<Header trip={trip} />}
         footer={<Footer trip={trip} />}
         footerSignificance="distinct"
+        onClick={handleDetail}
         significance="subdued"
         borderRadius="elementary"
+        actionList={getItemActions()}
       >
         {(tile) => (
-          <div className={Css.content()} onClick={handleDetail}>
-            {trip.text && !trip.image && (
+          <div className={Css.content()}>
+
               <Text
                 category="interface"
                 segment="content"
@@ -91,9 +114,9 @@ export const Tile = createVisualComponent({
               >
                 {trip.text}
               </Text>
-            )}
+
             {trip.imageUrl && <img src={trip.imageUrl} alt={trip.name} className={Css.image()} />}
-            {trip.image && !trip.imageUrl && <Pending size="xl" />}
+            {trip.image && !trip.imageUrl && <Pending size="m" />}
           </div>
         )}
       </Uu5Elements.Tile>
@@ -105,7 +128,7 @@ export const Tile = createVisualComponent({
 function Header({ trip }) {
   return (
     <Text category="interface" segment="title" type="micro" colorScheme="building">
-      {[trip.name, trip.text]}
+      {trip.name}
     </Text>
   );
 }
@@ -113,8 +136,9 @@ function Header({ trip }) {
 function Footer({ trip }) {
   return (
     <Text category="interface" segment="title" type="micro" colorScheme="building">
-      {[trip.departureDate, trip.pricePerPerson]}
+      Price per person: {trip.pricePerPerson} CZK
     </Text>
+
   );
 }
 

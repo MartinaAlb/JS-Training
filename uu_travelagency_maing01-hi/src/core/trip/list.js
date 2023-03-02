@@ -4,6 +4,7 @@ import TripListProvider from "./list-provider";
 import LocationListProvider from "../location/list-provider";
 import ListView from "./list-view";
 import Config from "./config/config";
+
 //@@viewOff:imports
 
 export const List = createVisualComponent({
@@ -24,7 +25,9 @@ export const List = createVisualComponent({
     //@@viewOff:private
 
     //@@viewOn:render
+
     return (
+
       <TripListProvider>
         {({ tripDataList, filterList, sorterList }) => (
           <LocationListProvider>
@@ -39,6 +42,7 @@ export const List = createVisualComponent({
           </LocationListProvider>
         )}
       </TripListProvider>
+
     );
     //@@viewOff:render
   },

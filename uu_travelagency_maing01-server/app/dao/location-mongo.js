@@ -30,7 +30,13 @@ class LocationMongo extends UuObjectDao {
   }
 
   async listByIdList(awid, locationIdList) {
-    const filter = {awid, locationId : locationIdList};
+    //const filter = {awid, locationId : locationIdList};
+    const filter = {
+      awid,
+      _id: {
+        $in: locationIdList.map((id) => new ObjectId(id)),
+      },
+    };
 
     return await super.find(filter)
   }

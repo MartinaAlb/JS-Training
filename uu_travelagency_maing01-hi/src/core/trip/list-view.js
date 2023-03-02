@@ -7,6 +7,7 @@ import { FilterButton, SorterButton } from "uu5tilesg02-controls";
 import Content from "./list-view/content";
 import DataListStateResolver from "../data-list-state-resolver";
 import CreateModal from "./list-view/create-modal";
+import UpdateModal from "./list-view/update-modal";
 import Config from "./config/config";
 import importLsi from "../../lsi/import-lsi";
 //@@viewOff:imports
@@ -40,7 +41,15 @@ const ListView = createVisualComponent({
     const { data: systemData } = useSystemData();
     const { addAlert } = useAlertBus();
     const [createData, setCreateData] = useState({ shown: false });
+    const [updateData, setUpdateData] = useState({ shown: false, id: undefined });
     const [, setRoute] = useRoute();
+
+    const activeDataObjectId = updateData.id;
+    let activeDataObject;
+
+    if (activeDataObjectId) {
+      activeDataObject = getTripDataObject(props.tripDataList, activeDataObjectId);
+    }
 
     const showError = useCallback(
       (error) =>
@@ -120,6 +129,22 @@ const ListView = createVisualComponent({
       setRoute("tripDetail", { id: trip.id });
     };
 
+    const handleUpdate = useCallback(
+      (tripDataObject) => {
+        setUpdateData({ shown: true, id: tripDataObject.data.id });
+      },
+      [setUpdateData]
+    );
+
+    const handleUpdateDone = () => {
+      setUpdateData({ shown: false });
+    };
+
+    const handleUpdateCancel = () => {
+      setUpdateData({ shown: false });
+    };
+
+
     // Defining permissions
     //debugger
     const profileList = systemData.profileData.uuIdentityProfileList;
@@ -152,6 +177,15 @@ const ListView = createVisualComponent({
             onCancel={handleCreateCancel}
           />
         )}
+        {updateData.shown && (
+          <UpdateModal
+            tripDataObject={activeDataObject}
+            locationDataList={props.locationDataList}
+            onSaveDone={handleUpdateDone}
+            onCancel={handleUpdateCancel}
+            shown
+          />
+        )}
         <ControllerProvider
           data={props.tripDataList.data}
           filterDefinitionList={getFilters(props.locationDataList, lsi)}
@@ -177,6 +211,7 @@ const ListView = createVisualComponent({
                   tripsPermissions={tripsPermissions}
                   onLoadNext={handleLoadNext}
                   onDetail={handleDetail}
+                  onUpdate={handleUpdate}
                 />
               </DataListStateResolver>
             </DataListStateResolver>
@@ -219,6 +254,15 @@ function getSorters(lsi) {
   ];
 }
 
+function getTripDataObject(tripDataList, id) {
+  // HINT: We need to also check newData where are newly created items
+  // that don't meet filtering, sorting or paging criteria.
+  const item =
+    tripDataList.newData?.find((item) => item?.data.id === id) ||
+    tripDataList.data.find((item) => item?.data.id === id);
+
+  return item;
+}
 function getActions(props, tripsPermissions, { handleCreate }) {
   const actionList = [];
 

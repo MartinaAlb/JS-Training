@@ -61,12 +61,26 @@
     "capacity": "Capacity",
     "departureDate": "Departure Date",
     "pricePerPerson": "Price Per Person",
-    "participantIdList": "Participant List",
     "header": "Create trip",
     "info": "You can create the trip...",
     "submit": "Create",
     "cancel": "Cancel",
     "textOrFile": "Text or image must be provided."
+  },
+  "UuTravelagency.Core.Trip.ListView.UpdateModal": {
+    "name": "Name",
+    "text": "Text",
+    "image": "Image",
+    "location": "Location",
+    "capacity": "Capacity",
+    "departureDate": "Departure Date",
+    "pricePerPerson": "Price Per Person",
+    "header": "Update location",
+    "info": "You can update the location...",
+    "submit": "Update",
+    "cancel": "Cancel",
+    "textOrFile": "Text or image must be provided."
   }
 }
+
 
