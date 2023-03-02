@@ -1,10 +1,11 @@
 "use strict";
 const ListAbl = require("../../abl/trip/list-abl");
 const GetAbl = require("../../abl/trip/get-abl");
-const CreateAbl = require("../../abl/trip/create-abl.js");
+const CreateAbl = require("../../abl/trip/create-abl");
+const UpdateAbl = require("../../abl/trip/update-abl");
+const DeleteAbl = require("../../abl/trip/delete-abl");
 
 class TripController {
-
   static list(ucEnv) {
     return ListAbl.list(ucEnv.getUri().getAwid(), ucEnv.parameters, ucEnv.getAuthorizationResult());
   }
@@ -14,7 +15,7 @@ class TripController {
   }
 
   static create(ucEnv) {
-    return this.CreateAbl.create(ucEnv.getUri().getAwid(), ucEnv.parameters, ucEnv.session, ucEnv.getAuthorizationResult());
+    return CreateAbl.create(ucEnv.getUri().getAwid(), ucEnv.parameters, ucEnv.session, ucEnv.getAuthorizationResult());
   }
 
   static update(ucEnv) {
@@ -24,8 +25,6 @@ class TripController {
   static delete(ucEnv) {
     return DeleteAbl.delete(ucEnv.getUri().getAwid(), ucEnv.parameters, ucEnv.session, ucEnv.getAuthorizationResult());
   }
-
-
 }
 
 module.exports = TripController;

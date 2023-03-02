@@ -59,7 +59,7 @@ class DeleteAbl {
     }
 
     // hds 5
-    await this.tripRatingDao.deleteByTripId(awid, trip.id);
+
 
     // hds 6
     if (trip.image) {
