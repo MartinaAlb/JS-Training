@@ -8,7 +8,7 @@ const FileHelper = require("../helpers/file-helper");
 //@@viewOn:components
 class Trip {
   constructor() {
-    this.locationDao = DaoFactory.getDao(Schemas.CATEGORY);
+    this.locationDao = DaoFactory.getDao(Schemas.LOCATION);
   }
 
   /**
