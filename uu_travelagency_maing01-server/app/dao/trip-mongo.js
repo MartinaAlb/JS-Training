@@ -15,9 +15,7 @@ class TripMongo extends UuObjectDao {
   }
 
   async create(uuObject) {
-    if (uuObject.locationIdList) {
-      uuObject.locationIdList = uuObject.locationIdList.map((locationId) => new ObjectId(locationId));
-    }
+      uuObject.locationId = new ObjectId(uuObject.locationId);
     return await super.insertOne(uuObject);
   }
 

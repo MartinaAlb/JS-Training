@@ -104,6 +104,13 @@ const Create = {
       this.message = "Create trip by trip DAO create failed.";
     }
   },
+  LocationDoesNotExist: class extends TravelagencyMainUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${Create.UC_CODE}locationDoesNotExist`;
+      this.message = "Location does not exist";
+    }
+  },
   InvalidImage: class extends TravelagencyMainUseCaseError {
     constructor() {
       super(...arguments);

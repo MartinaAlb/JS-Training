@@ -51,8 +51,8 @@ export const CreateModal = createVisualComponent({
         // alert if needed.
         const values = { ...event.data.value };
 
-        if (values.locationIdList === undefined) {
-          delete values.locationIdList; // trip/create command supports only non-empty array;
+        if (values.locationId === undefined) {
+          delete values.locationId; // trip/create command supports only non-empty array;
         }
 
         // there is an issue with the ApiClient and this must be here - don't worry too much about it now

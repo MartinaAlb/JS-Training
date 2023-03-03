@@ -79,21 +79,13 @@ class CreateAbl {
     }
 
     // hds 5
-    if (dtoIn.locationIdList && dtoIn.locationIdList.length) {
-      const { validLocations, invalidLocations } = await Trip.checkLocationsExistence(awid, dtoIn.locationIdList);
-      // 5.1
-      if (invalidLocations.length > 0) {
-        ValidationHelper.addWarning(
-          uuAppErrorMap,
-          Warnings.Create.LocationDoesNotExist.code,
-          Warnings.Create.LocationDoesNotExist.message,
-          { locationIdList: invalidLocations }
-        );
-      }
-      uuObject.locationIdList = validLocations;
-    } else {
-      uuObject.locationIdList = [];
+
+    const { validLocations } = await Trip.checkLocationsExistence(awid, [dtoIn.locationId]);
+      if(!validLocations.length) {
+          throw new Errors.Create.LocationDoesNotExist({ uuAppErrorMap }, {locationId : dtoIn.locationId});
     }
+      // 5.1
+
 
     // hds 6
     uuObject.awid = awid;

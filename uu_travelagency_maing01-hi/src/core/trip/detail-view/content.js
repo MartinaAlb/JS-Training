@@ -78,7 +78,7 @@ const Content = createVisualComponent({
 
     function buildLocationNames() {
       // for faster lookup
-      let locationIds = new Set(trip.locationIdList);
+      let locationIds = new Set(trip.locationId);
       return props.locationDataList.data
         .reduce((acc, { data: location }) => {
           if (locationIds.has(location.id)) {

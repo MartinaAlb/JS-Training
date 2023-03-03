@@ -79,6 +79,8 @@ class UpdateAbl {
     const toUpdate = { ...dtoIn };
     delete toUpdate.deleteImage;
     // Note: empty array is valid (possibility to remove all locations)
+
+    // todo
     if (dtoIn.locationIdList) {
       const { validLocations, invalidLocations } = await Trip.checkLocationsExistence(awid, dtoIn.locationIdList);
       if (invalidLocations.length > 0) {

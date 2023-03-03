@@ -253,7 +253,7 @@ function getFilters(locationDataList, lsi) {
   let filterList = [];
   if (locationDataList.state === "ready") {
     filterList.push({
-      key: "locationIdList",
+      key: "locationId",
       label: lsi.location,
       inputType: "select",
       inputProps: {
@@ -261,6 +261,19 @@ function getFilters(locationDataList, lsi) {
         itemList: locationDataList.data.map((locationDto) => ({
           value: locationDto.data.id,
           children: locationDto.data.name,
+        })),
+      },
+    });
+    const countryList = [...new Set(locationDataList.data.map(locationDto => locationDto.data.country) )]
+    filterList.push({
+      key: "country",
+      label: lsi.country,
+      inputType: "select",
+      inputProps: {
+        multiple: true,
+        itemList: countryList.map((country) => ({
+          value: country,
+          children: country,
         })),
       },
     });

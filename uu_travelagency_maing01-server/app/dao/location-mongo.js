@@ -9,13 +9,13 @@ class LocationMongo extends UuObjectDao {
 
   async createSchema() {
     await super.createIndex({ awid: 1, _id: 1 }, { unique: true });
-    await super.createIndex({ awid: 1, country: 1 });
+    await super.createIndex({ awid: 1, country: 1 }, { unique: true });
     await super.createIndex({ awid: 1, name: 1 });
   }
 
   async create(uuObject) {
-    if (uuObject.locationIdList) {
-      uuObject.locationIdList = uuObject.locationIdList.map((locationId) => new ObjectId(locationId));
+    if (uuObject.locationId) {
+      uuObject.locationId = uuObject.locationIdList.map((locationId) => new ObjectId(locationId));
     }
     return await super.insertOne(uuObject);
   }
@@ -25,8 +25,8 @@ class LocationMongo extends UuObjectDao {
   }
 
   async update(uuObject) {
-    if (uuObject.locationIdList) {
-      uuObject.locationIdList = uuObject.locationIdList.map((locationId) => new ObjectId(locationId));
+    if (uuObject.locationId) {
+      uuObject.locationId = uuObject.locationIdList.map((locationId) => new ObjectId(locationId));
     }
     let filter = { id: uuObject.id, awid: uuObject.awid };
     return await super.findOneAndUpdate(filter, uuObject, "NONE");

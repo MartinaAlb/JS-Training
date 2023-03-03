@@ -25,9 +25,9 @@ export const ListProvider = createComponent({
         loadNext: handleLoadNext,
         reload: handleReload,
         create: handleCreate,
-        delete: handleDelete,
       },
       itemHandlerMap: {
+        delete: handleDelete,
         update: handleUpdate,
         getImage: handleGetImage,
       },
