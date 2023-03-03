@@ -114,8 +114,16 @@ const Content = createVisualComponent({
     const arrivalDate = new Date(departureDate.getTime() + 7 * 24 * 60 * 60 * 1000);
 
     return (
+
       <div {...attrs}>
-        {trip.text && (
+        <Line significance="subdued" />
+        <InfoLine>
+          {trip.location.name}
+        </InfoLine>
+        <InfoLine>
+          {trip.location.country}
+        </InfoLine>
+
           <Text
             category="interface"
             segment="content"
@@ -125,7 +133,7 @@ const Content = createVisualComponent({
           >
             {trip.text}
           </Text>
-        )}
+
 
         {trip.imageUrl && <img src={trip.imageUrl} alt={trip.name} className={Css.image()} />}
 
@@ -135,10 +143,13 @@ const Content = createVisualComponent({
 
         <div>
           <InfoLine>
-            Date of departure <DateTime value={departureDate} dateFormat="short" timeFormat="none" />
+            Date of departure: <DateTime value={departureDate} dateFormat="short" timeFormat="none" />
           </InfoLine>
           <InfoLine>
-            Date of arrival <DateTime value={arrivalDate} dateFormat="short" timeFormat="none" />
+            Date of arrival: <DateTime value={arrivalDate} dateFormat="short" timeFormat="none" />
+          </InfoLine>
+          <InfoLine>
+            Trip capacity: {trip.capacity}
           </InfoLine>
         </div>
 
@@ -148,12 +159,9 @@ const Content = createVisualComponent({
           <span>
             <>
 
-              <Text category="interface" segment="content" colorScheme="building" type="medium">
-                {trip.capacity}
-              </Text>
 
               <Text category="interface" segment="content" colorScheme="building" type="medium">
-                {trip.pricePerPerson}
+                Price per person: {trip.pricePerPerson} CZK
               </Text>
             </>
           </span>

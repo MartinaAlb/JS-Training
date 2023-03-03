@@ -11,6 +11,7 @@ class GetAbl {
   constructor() {
     this.validator = Validator.load();
     this.dao = DaoFactory.getDao(Schemas.TRIP);
+    this.locationDao = DaoFactory.getDao(Schemas.LOCATION);
   }
 
   async get(awid, dtoIn, authorizationResult) {
@@ -48,12 +49,17 @@ class GetAbl {
       // 3.1
       throw new Errors.Get.TripDoesNotExist(uuAppErrorMap, { tripId: dtoIn.id });
     }
+    const location = await this.locationDao.get(awid, trip.locationId)
+
 
     // hds 4
     const dtoOut = {
       ...trip,
+      location,
       uuAppErrorMap,
     };
+
+
 
     return dtoOut;
   }
