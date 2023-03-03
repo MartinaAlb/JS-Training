@@ -149,7 +149,7 @@ function Header({ trip }) {
 function Footer({ trip }) {
   return (
     <Text category="interface" segment="title" type="micro" colorScheme="building">
-      Price per person: {trip.pricePerPerson} CZK
+       {trip.pricePerPerson} CZK
     </Text>
 
   );

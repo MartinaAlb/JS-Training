@@ -110,6 +110,8 @@ const Content = createVisualComponent({
     //@@viewOn:render
     const attrs = Utils.VisualComponent.getAttrs(props);
     const trip = tripDataObject.data;
+    const departureDate = new Date(trip.departureDate);
+    const arrivalDate = new Date(departureDate.getTime() + 7 * 24 * 60 * 60 * 1000);
 
     return (
       <div {...attrs}>
@@ -131,9 +133,14 @@ const Content = createVisualComponent({
 
         {trip.locationIdList?.length > 0 && <InfoLine>{buildLocationNames()}</InfoLine>}
 
-        <InfoLine>
-          <DateTime value={trip.sys.cts} dateFormat="short" timeFormat="none" />
-        </InfoLine>
+        <div>
+          <InfoLine>
+            Date of departure <DateTime value={departureDate} dateFormat="short" timeFormat="none" />
+          </InfoLine>
+          <InfoLine>
+            Date of arrival <DateTime value={arrivalDate} dateFormat="short" timeFormat="none" />
+          </InfoLine>
+        </div>
 
 
 
@@ -144,9 +151,7 @@ const Content = createVisualComponent({
               <Text category="interface" segment="content" colorScheme="building" type="medium">
                 {trip.capacity}
               </Text>
-              <Text category="interface" segment="content" colorScheme="building" type="medium">
-                {trip.departureDate}
-              </Text>
+
               <Text category="interface" segment="content" colorScheme="building" type="medium">
                 {trip.pricePerPerson}
               </Text>
