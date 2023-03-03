@@ -21,7 +21,7 @@ class TravelagencyMainAbl {
   constructor() {
     this.validator = Validator.load();
     this.dao = DaoFactory.getDao(Schemas.TRAVELAGENCY_MAIN);
-    this.categoryDao = DaoFactory.getDao(Schemas.LOCATION);
+    this.locationDao = DaoFactory.getDao(Schemas.LOCATION);
   }
 
   async init(uri, dtoIn) {
@@ -125,8 +125,8 @@ class TravelagencyMainAbl {
       // hds 6.A.2
       dtoOut.data = { ...travelagencyMain, relatedObjectsMap: {} };
 
-      const categoryList = await this.categoryDao.list(awid);
-      dtoOut.data.categoryList = categoryList.itemList;
+      const locationList = await this.locationDao.list(awid);
+      dtoOut.data.locationList = locationList.itemList;
     }
 
     // hds 7

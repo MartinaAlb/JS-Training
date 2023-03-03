@@ -37,6 +37,10 @@ const Calls = {
       const commandUri = Calls.getCommandUri("trip/update");
       return Calls.call("post", commandUri, dtoIn);
     },
+    delete(dtoIn) {
+      const commandUri = Calls.getCommandUri("trip/delete");
+      return Calls.call("post", commandUri, dtoIn);
+    },
   },
 
   Location: {

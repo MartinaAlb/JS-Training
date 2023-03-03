@@ -36,7 +36,7 @@
   },
   "UuTravelagency.Core.Trip.ListView": {
     "header": "Cestovní agentura",
-    "info": "<uu5string/>The list shows all trips from the database with possibility of filtering and sorting. e <UU5.Bricks.Code>Authorities</UU5.Bricks.Code> or <UU5.Bricks.Code>Executives</UU5.Bricks.Code> are allowed to create jokes. New jokes are visible only to authors and <UU5.Bricks.Code>Authorities</UU5.Bricks.Code> unless <UU5.Bricks.Code>Authorities</UU5.Bricks.Code> accept them visible for all. If you like particular joke you can easily copy it as component and place everywhere the dynamic content is supported (e.g. uuDockit). For more details visit documentation of the component <UU5.Bricks.Link href='https://uuapp.plus4u.net/uu-bookkit-maing01/71f8d7b5cfdc4336b0abfe47b3cb237b/book/page?code=UuJokesJokeList' target='_blank'>UuJokes.Joke.List</UU5.Bricks.Link>.",
+    "info": "<uu5string/>The list shows all trips from the database with possibility of filtering and sorting. e <UU5.Bricks.Code>Authorities</UU5.Bricks.Code> or <UU5.Bricks.Code>Executives</UU5.Bricks.Code> are allowed to create trips. New trips are visible only to authors and <UU5.Bricks.Code>Authorities</UU5.Bricks.Code> unless <UU5.Bricks.Code>Authorities</UU5.Bricks.Code> accept them visible for all. If you like particular trip you can easily copy it as component and place everywhere the dynamic content is supported (e.g. uuDockit). For more details visit documentation of the component <UU5.Bricks.Link href='https://uuapp.plus4u.net/uu-bookkit-maing01/71f8d7b5cfdc4336b0abfe47b3cb237b/book/page?code=UuTravelagencyTripList' target='_blank'>UuTravelagency.Trip.List</UU5.Bricks.Link>.",
     "location": "Lokalita",
     "name": "Název"
   }

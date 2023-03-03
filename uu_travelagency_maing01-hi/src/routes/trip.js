@@ -8,7 +8,7 @@ import Config from "./config/config";
 
 const Trip = createVisualComponent({
   //@@viewOn:statics
-  displayName: Config.TAG + "Joke",
+  displayName: Config.TAG + "Trip",
   //@@viewOff:statics
 
   //@@viewOn:propTypes

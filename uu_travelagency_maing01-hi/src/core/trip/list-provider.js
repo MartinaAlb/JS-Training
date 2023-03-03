@@ -25,6 +25,7 @@ export const ListProvider = createComponent({
         loadNext: handleLoadNext,
         reload: handleReload,
         create: handleCreate,
+        delete: handleDelete,
       },
       itemHandlerMap: {
         update: handleUpdate,
@@ -41,7 +42,7 @@ export const ListProvider = createComponent({
 
       let sorter;
       if (criteria?.sorterList) {
-        // Now uuJokes supports only 1 sorter per request.
+        // Now uuTravelagency supports only 1 sorter per request.
         // Therefore we use the last added to the sorterList by the user.
         sorter = criteria.sorterList.at(criteria.sorterList.length - 1);
         sorterList.current = sorter ? [sorter] : [];
@@ -85,6 +86,11 @@ export const ListProvider = createComponent({
       const trip = await Calls.Trip.update(values);
       const imageUrl = values.image && generateAndRegisterImageUrl(values.image);
       return { ...trip, imageFile: values.image, imageUrl };
+    }
+
+    function handleDelete(trip) {
+      const dtoIn = { id: trip.id };
+      return Calls.Trip.delete(dtoIn);
     }
 
     useEffect(() => {
