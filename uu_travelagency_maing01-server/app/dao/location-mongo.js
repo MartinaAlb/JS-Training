@@ -1,6 +1,6 @@
 "use strict";
-const { UuObjectDao } = require("uu_appg01_server").ObjectStore;
 const { ObjectId } = require("bson");
+const { UuObjectDao } = require("uu_appg01_server").ObjectStore;
 
 class LocationMongo extends UuObjectDao {
   constructor(...args) {
@@ -9,28 +9,42 @@ class LocationMongo extends UuObjectDao {
 
   async createSchema() {
     await super.createIndex({ awid: 1, _id: 1 }, { unique: true });
-    await super.createIndex({ awid: 1, name: 1 }, { unique: true });
+    await super.createIndex({ awid: 1, country: 1 });
+    await super.createIndex({ awid: 1, name: 1 });
   }
 
-  // create DAO method
+  async create(uuObject) {
+    if (uuObject.locationIdList) {
+      uuObject.locationIdList = uuObject.locationIdList.map((locationId) => new ObjectId(locationId));
+    }
+    return await super.insertOne(uuObject);
+  }
 
-  // get DAO method
+  async get(awid, id) {
+    return await super.findOne({ id, awid });
+  }
 
-  // getByName DAO method
+  async update(uuObject) {
+    if (uuObject.locationIdList) {
+      uuObject.locationIdList = uuObject.locationIdList.map((locationId) => new ObjectId(locationId));
+    }
+    let filter = { id: uuObject.id, awid: uuObject.awid };
+    return await super.findOneAndUpdate(filter, uuObject, "NONE");
+  }
 
-  // update DAO method
+  async delete(awid, id) {
+    await super.deleteOne({ awid, id });
+  }
 
-  // delete DAO method
-
-  async list(awid, order, pageInfo) {
-    const filter = { awid };
+  async list(filterMap={}, awid, order, pageInfo={}) {
+    const filter = {...filterMap, awid};
     const sort = { name: order === "asc" ? 1 : -1 };
+
 
     return await super.find(filter, pageInfo, sort);
   }
 
   async listByIdList(awid, locationIdList) {
-    //const filter = {awid, locationId : locationIdList};
     const filter = {
       awid,
       _id: {
@@ -38,10 +52,10 @@ class LocationMongo extends UuObjectDao {
       },
     };
 
-    return await super.find(filter)
+    return await super.find(filter);
   }
+
+
 }
-
-
 
 module.exports = LocationMongo;

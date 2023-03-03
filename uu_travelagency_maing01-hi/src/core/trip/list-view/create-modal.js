@@ -102,11 +102,10 @@ export const CreateModal = createVisualComponent({
 
             <FormSelect
               label={lsi.location}
-              name="locationIdList"
+              name="locationId"
               itemList={getLocationItemList()}
               className={formInputCss}
               required
-              multiple
             />
 
             <FormFile label={lsi.image} name="image" accept="image/*" className={formInputCss} />

@@ -18,7 +18,8 @@ class LocationAbl {
   }
 
   async list(awid) {
-    const list = await this.dao.list(awid);
+    const list = await this.dao.list({}, awid);
+    console.log(list)
     // hds 4
     return {
       ...list

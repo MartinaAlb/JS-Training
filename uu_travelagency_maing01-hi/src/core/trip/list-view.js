@@ -289,6 +289,7 @@ function getTripDataObject(tripDataList, id) {
   return item;
 }
 function getActions(props, tripsPermissions, { handleCreate }) {
+  const buttonsDisabled = props.tripDataList.state !== "ready" || props.locationDataList.state !== "ready"
   const actionList = [];
 
   if (props.tripDataList.data) {
@@ -307,7 +308,7 @@ function getActions(props, tripsPermissions, { handleCreate }) {
       children: <Lsi import={importLsi} path={[ListView.uu5Tag, "createTrip"]} />,
       primary: true,
       onClick: handleCreate,
-      disabled: props.disabled,
+      disabled: buttonsDisabled,
     });
   }
 

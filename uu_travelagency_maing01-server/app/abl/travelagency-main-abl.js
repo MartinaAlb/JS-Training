@@ -78,7 +78,9 @@ class TravelagencyMainAbl {
     return { travelagencyMain, uuAppErrorMap };
   }
 
+
   async load(uri, session, uuAppErrorMap = {}) {
+    console.log("command load")
     let awid = uri.getAwid();
     let dtoOut = {};
 

@@ -33,12 +33,12 @@ export const ListProvider = createComponent({
       dtoIn.order = criteria.order || "asc";
 
       criteriaRef.current = dtoIn;
-      return Calls.Trip.list(dtoIn);
+      return Calls.Location.list(dtoIn);
     }
 
     function handleLoadNext(pageInfo) {
       const dtoIn = { ...criteriaRef.current, pageInfo };
-      return Calls.Trip.list(dtoIn);
+      return Calls.Location.list(dtoIn);
     }
     //@@viewOff:private
 

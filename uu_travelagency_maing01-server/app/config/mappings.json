@@ -58,12 +58,12 @@
         "type": "CMD",
         "dtoInAuditMap": {
           "id": "$.id"
-        },
-        "location/list": {
-          "realization": "api/controllers/LocationController.list",
-          "httpMethod": "GET",
-          "type": "CMD"
         }
+      },
+      "location/list": {
+        "realization": "api/controllers/LocationController.list",
+        "httpMethod": "GET",
+        "type": "CMD"
       }
     }
   }

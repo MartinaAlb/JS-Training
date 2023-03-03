@@ -50,6 +50,7 @@ export const Tile = createVisualComponent({
   render(props) {
     //@@viewOn:private
     const { data: tripDataObject } = props;
+    const actionsDisabled = tripDataObject.state === "pending";
 
     useEffect(() => {
       if (
@@ -85,13 +86,13 @@ export const Tile = createVisualComponent({
         actionList.push({
           icon: "mdi-pencil",
           onClick: handleUpdate,
-          //disabled: actionsDisabled,
+          disabled: actionsDisabled,
         });
 
         actionList.push({
           icon: "mdi-delete",
           onClick: handleDelete,
-          //disabled: actionsDisabled,
+          disabled: actionsDisabled,
         });
       }
 

@@ -100,12 +100,11 @@ export const UpdateModal = createVisualComponent({
 
             <FormSelect
               label={lsi.location}
-              name="locationIdList"
-              initialValue={trip.locationIdList}
+              name="locationId"
+              initialValue={trip.locationId}
               itemList={getLocationItemList()}
               className={formInputCss}
               required
-              multiple
             />
 
             <FormFile
@@ -130,6 +129,7 @@ export const UpdateModal = createVisualComponent({
             <FormNumber
               label={lsi.capacity}
               name="capacity"
+              initialValue={trip.capacity}
               inputAttrs={{ maxLength: 4000 }}
               className={formInputCss}
               required
@@ -138,6 +138,7 @@ export const UpdateModal = createVisualComponent({
             <FormNumber
               label={lsi.pricePerPerson}
               name="pricePerPerson"
+              initialValue={trip.pricePerPerson}
               inputAttrs={{ maxLength: 4000 }}
               className={formInputCss}
               required
@@ -146,6 +147,7 @@ export const UpdateModal = createVisualComponent({
             <FormDate
               label={lsi.departureDate}
               name="departureDate"
+              initialValue={trip.departureDate}
               inputAttrs={{ maxLength: 4000 }}
               className={formInputCss}
               required
