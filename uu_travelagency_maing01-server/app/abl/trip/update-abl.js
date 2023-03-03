@@ -80,19 +80,10 @@ class UpdateAbl {
     delete toUpdate.deleteImage;
     // Note: empty array is valid (possibility to remove all locations)
 
-    // todo
-    if (dtoIn.locationIdList) {
-      const { validLocations, invalidLocations } = await Trip.checkLocationsExistence(awid, dtoIn.locationIdList);
-      if (invalidLocations.length > 0) {
-        // 7.2
-        ValidationHelper.addWarning(
-          uuAppErrorMap,
-          Warnings.Update.LocationDoesNotExist.code,
-          Warnings.Update.LocationDoesNotExist.message,
-          { locationIdList: invalidLocations }
-        );
-      }
-      toUpdate.locationIdList = validLocations;
+
+    const { validLocations } = await Trip.checkLocationsExistence(awid, [dtoIn.locationId]);
+    if(!validLocations.length) {
+      throw new Errors.Create.LocationDoesNotExist({ uuAppErrorMap }, {locationId : dtoIn.locationId});
     }
 
     // hds 8

@@ -1,7 +1,7 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
 import { createVisualComponent, Utils, Lsi, useLanguage, PropTypes, useEffect, useLsi } from "uu5g05";
-import { Box, Line, Text, DateTime, useSpacing } from "uu5g05-elements";
+import { Box, Line, Text, DateTime, useSpacing, Grid } from "uu5g05-elements";
 import { PersonPhoto } from "uu_plus4u5g02-elements";
 import Config from "./config/config";
 import importLsi from "../../../lsi/import-lsi";
@@ -115,6 +115,7 @@ const Content = createVisualComponent({
 
     return (
 
+
       <div {...attrs}>
         <Line significance="subdued" />
         <InfoLine>
@@ -137,7 +138,8 @@ const Content = createVisualComponent({
 
         {trip.imageUrl && <img src={trip.imageUrl} alt={trip.name} className={Css.image()} />}
 
-        <Line significance="subdued" />
+
+      <Line significance="subdued" />
 
         {trip.locationIdList?.length > 0 && <InfoLine>{buildLocationNames()}</InfoLine>}
 
@@ -192,3 +194,13 @@ function InfoLine({ children }) {
 //@@viewOff:helpers
 
 export default Content;
+
+/*
+<Uu5Elements.Grid
+    templateColumns="repeat(2, 1fr)" // (1, 1fr)
+    justifyItems="start"
+    className={backgroundStyle}
+  >
+    {gridContent}
+  </Uu5Elements.Grid>
+ */

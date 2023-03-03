@@ -4,7 +4,7 @@ const Constants = {
     TRAVELAGENCY_MAIN: "travelagencyMain",
     LOCATION: "location",
     TRIP: "trip",
-    // TODO: Add other schemas when you configure one in persistance.json and create mongo file for it
+
   },
 
   Trips: {
