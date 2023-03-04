@@ -5,6 +5,7 @@ import { Box, Line, Text, DateTime, useSpacing, Grid } from "uu5g05-elements";
 import { PersonPhoto } from "uu_plus4u5g02-elements";
 import Config from "./config/config";
 import importLsi from "../../../lsi/import-lsi";
+import {Icon} from "uu5g05-elements";
 //@@viewOff:imports
 
 //@@viewOn:css
@@ -118,54 +119,47 @@ const Content = createVisualComponent({
 
       <div {...attrs}>
         <Line significance="subdued" />
-        <InfoLine>
-          {trip.location.name}
-        </InfoLine>
-        <InfoLine>
-          {trip.location.country}
-        </InfoLine>
 
-          <Text
-            category="interface"
-            segment="content"
-            type="medium"
-            colorScheme="building"
-            className={Css.text(spacing)}
-          >
-            {trip.text}
-          </Text>
+        <Grid templateColumns={{ xs: "repeat(12, 1fr)" }}>
+          <Grid.Item colSpan={4}>
+            <InfoLine>
+              <Icon icon={"fa-solid fa-bed"}/> {trip.location.name}
+            </InfoLine>
+            <InfoLine>
+              <Icon icon={"mdi-earth"}/>{trip.location.country}
+            </InfoLine>
+            <Text
+              category="interface"
+              segment="content"
+              type="medium"
+              colorScheme="building"
+              className={Css.text(spacing)}
+            >
+              {trip.text}
+            </Text>
+            <div>
+              <InfoLine>
+                <Icon icon="mdi-airplane-takeoff" /> <DateTime value={departureDate} dateFormat="short" timeFormat="none" />
+              </InfoLine>
+              <InfoLine>
+                <Icon icon={"mdi-airplane-landing"}/> <DateTime value={arrivalDate} dateFormat="short" timeFormat="none" />
+              </InfoLine>
+              <InfoLine>
+                <Icon icon={"mdi-human-greeting"}/> {trip.capacity}
+              </InfoLine>
+            </div>
+          </Grid.Item>
 
-
-        {trip.imageUrl && <img src={trip.imageUrl} alt={trip.name} className={Css.image()} />}
-
-
-      <Line significance="subdued" />
-
-        {trip.locationIdList?.length > 0 && <InfoLine>{buildLocationNames()}</InfoLine>}
-
-        <div>
-          <InfoLine>
-            Date of departure: <DateTime value={departureDate} dateFormat="short" timeFormat="none" />
-          </InfoLine>
-          <InfoLine>
-            Date of arrival: <DateTime value={arrivalDate} dateFormat="short" timeFormat="none" />
-          </InfoLine>
-          <InfoLine>
-            Trip capacity: {trip.capacity}
-          </InfoLine>
-        </div>
-
-
+          <Grid.Item colSpan={8}>
+            {trip.imageUrl && <img src={trip.imageUrl} alt={trip.name} className={Css.image()} />}
+          </Grid.Item>
+        </Grid>
 
         <Box significance="distinct" className={Css.footer(spacing)}>
           <span>
-            <>
-
-
               <Text category="interface" segment="content" colorScheme="building" type="medium">
-                Price per person: {trip.pricePerPerson} CZK
+                <Icon icon={"mdi-credit-card"}/> {trip.pricePerPerson} CZK
               </Text>
-            </>
           </span>
         </Box>
       </div>

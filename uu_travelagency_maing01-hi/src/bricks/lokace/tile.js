@@ -12,11 +12,11 @@ const Tile = createVisualComponent({
 
   //@@viewOn:propTypes
   propTypes: {
-    location: PropTypes.shape({
+    lokace: PropTypes.shape({
       name: PropTypes.string,
+      country: PropTypes.string,
       address: PropTypes.string,
       city: PropTypes.string,
-      country: PropTypes.string,
       phoneNumber: PropTypes.string
     })
   },
@@ -40,27 +40,30 @@ const Tile = createVisualComponent({
     return (
       <Box {...elementProps}>
         <div>
-          <Text>{props.location.name}</Text>
-        </div>
-        <div>
           <Text category="interface" segment="title" type="minor" colorScheme="building" >
-            <Icon icon="mdi-account" /> {props.location.country}
+            <Icon icon={"fa-solid fa-bed"}/> {props.lokace.name}
           </Text>
         </div>
         <Line significance="subdued" />
         <div>
           <Text category="interface" segment="content" type="medium" colorScheme="building">
-            {props.location.city}
+            <Icon icon={"mdi-earth"}/> {props.lokace.country}
+          </Text>
+        </div>
+
+        <div>
+          <Text category="interface" segment="content" type="medium" colorScheme="building">
+            <Icon icon="mdi-road-variant" /> {props.lokace.address}
           </Text>
         </div>
         <div>
           <Text category="interface" segment="content" type="medium" colorScheme="building">
-            {props.location.address}
+            <Icon icon="mdi-city" /> {props.lokace.city}
           </Text>
         </div>
         <div>
           <Text category="interface" segment="content" type="medium" colorScheme="building">
-            {props.location.phoneNumber}
+            <Icon icon="mdi-phone-classic" /> {props.lokace.phoneNumber}
           </Text>
         </div>
       </Box>

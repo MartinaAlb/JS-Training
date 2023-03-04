@@ -7,6 +7,8 @@ import RouteBar from "./route-bar";
 
 import Config from "./config/config.js";
 import Participants from "../routes/participants";
+import Lokace from "../routes/lokace";
+
 //@@viewOff:imports
 
 //@@viewOn:constants
@@ -20,6 +22,7 @@ const ROUTE_MAP = {
   "": { redirect: "trips" },
   trips: (props) => <Trips {...props} />,
   participants: (props) => <Participants {...props} />,
+  lokace: (props) => <Lokace {...props} />,
   tripDetail: (props) => <Trip {...props} />,
   about: (props) => <About {...props} />,
   "sys/uuAppWorkspace/initUve": (props) => <InitAppWorkspace {...props} />,
