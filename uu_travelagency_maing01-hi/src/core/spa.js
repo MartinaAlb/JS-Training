@@ -6,6 +6,7 @@ import Plus4U5App from "uu_plus4u5g02-app";
 import RouteBar from "./route-bar";
 
 import Config from "./config/config.js";
+import Participants from "../routes/participants";
 //@@viewOff:imports
 
 //@@viewOn:constants
@@ -18,6 +19,7 @@ const Trip = Utils.Component.lazy(() => import("../routes/trip.js"));
 const ROUTE_MAP = {
   "": { redirect: "trips" },
   trips: (props) => <Trips {...props} />,
+  participants: (props) => <Participants {...props} />,
   tripDetail: (props) => <Trip {...props} />,
   about: (props) => <About {...props} />,
   "sys/uuAppWorkspace/initUve": (props) => <InitAppWorkspace {...props} />,
