@@ -2,7 +2,7 @@
 import UU5 from "uu5g04";
 import "uu5g04-bricks";
 import { createVisualComponent, Utils, useEffect, PropTypes } from "uu5g05";
-import Uu5Elements, { Pending, Text } from "uu5g05-elements";
+import Uu5Elements, {Icon, Pending, Text} from "uu5g05-elements";
 import Config from "./config/config";
 //@@viewOff:imports
 
@@ -141,7 +141,7 @@ export const Tile = createVisualComponent({
 function Header({ trip }) {
   return (
     <Text category="interface" segment="title" type="micro" colorScheme="building">
-      {trip.name}
+      <Icon icon="mdi-map-outline"/>  {trip.name}
     </Text>
   );
 }
@@ -149,7 +149,7 @@ function Header({ trip }) {
 function Footer({ trip }) {
   return (
     <Text category="interface" segment="title" type="micro" colorScheme="building">
-       {trip.pricePerPerson} CZK
+      <Icon icon="mdi-credit-card"/> {trip.pricePerPerson} CZK
     </Text>
 
   );
