@@ -6,6 +6,9 @@ import Plus4U5App from "uu_plus4u5g02-app";
 import RouteBar from "./route-bar";
 
 import Config from "./config/config.js";
+import Locations from "../routes/locations";
+import Participants from "../routes/participants";
+import Home from "../routes/home";
 //@@viewOff:imports
 
 //@@viewOn:constants
@@ -15,19 +18,19 @@ const ControlPanel = Utils.Component.lazy(() => import("../routes/control-panel.
 const Trips = Utils.Component.lazy(() => import("../routes/trips.js"));
 const Trip = Utils.Component.lazy(() => import("../routes/trip.js"));
 
+
 const ROUTE_MAP = {
   "": { redirect: "trips" },
+
   trips: (props) => <Trips {...props} />,
-  tripDetail: (props) => <Trip {...props} />,
+  locations: (props) => <Locations {...props} />,
+  participants: (props) => <Participants {...props} />,
   about: (props) => <About {...props} />,
   "sys/uuAppWorkspace/initUve": (props) => <InitAppWorkspace {...props} />,
   controlPanel: (props) => <ControlPanel {...props} />,
-  "*": () => (
-    <Uu5Elements.Text category="story" segment="heading" type="h1">
-      Not Found
-    </Uu5Elements.Text>
-  ),
+  "*": { redirect: "trips" },
 };
+
 //@@viewOff:constants
 
 //@@viewOn:css
