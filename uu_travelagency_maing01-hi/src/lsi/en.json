@@ -32,18 +32,21 @@
   "Menu": {
     "home": "Welcome",
     "about": "About Application",
-    "trips": "Trips"
+    "trips": "Trips",
+    "participants": "Participants",
+    "lokace": "Location"
   },
   "UuTravelagency.Core.Trip.ListView": {
     "header": "Travel Agency",
     "info": "<uu5string/>The list shows all trips from the database with possibility of filtering and sorting. e <UU5.Bricks.Code>Authorities</UU5.Bricks.Code> or <UU5.Bricks.Code>Executives</UU5.Bricks.Code> are allowed to create trips. New trips are visible only to authors and <UU5.Bricks.Code>Authorities</UU5.Bricks.Code> unless <UU5.Bricks.Code>Authorities</UU5.Bricks.Code> accept them visible for all. If you like particular trip you can easily copy it as component and place everywhere the dynamic content is supported (e.g. uuDockit). For more details visit documentation of the component <UU5.Bricks.Link href='https://uuapp.plus4u.net/uu-bookkit-maing01/71f8d7b5cfdc4336b0abfe47b3cb237b/book/page?code=UuTravelagnecyTripList' target='_blank'>UuTravelagency.Trip.List</UU5.Bricks.Link>.",
     "location": "Location",
-    "name": "Name",
+    "name": "Name of the trip",
     "country": "Country",
     "createTrip": "Create trip"
   },
   "UuTravelagency.Core.Trip.ListView.Content": {
     "location": "Location",
+    "country": "Country",
     "name": "Name",
     "text": "Text",
     "capacity": "Capacity",
@@ -77,8 +80,8 @@
     "capacity": "Capacity",
     "departureDate": "Departure Date",
     "pricePerPerson": "Price Per Person",
-    "header": "Update location",
-    "info": "You can update the location...",
+    "header": "Update trip",
+    "info": "You can update the trip...",
     "submit": "Update",
     "cancel": "Cancel",
     "textOrFile": "Text or image must be provided."

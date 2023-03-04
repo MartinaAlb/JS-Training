@@ -47,7 +47,6 @@ let Lokace = createVisualComponent({
               <Tile
                 key={lokace.id}
                 lokace={lokace}
-
                 style={{ width: 320, margin: "40px auto", padding: "10px" }}
               />
             ))

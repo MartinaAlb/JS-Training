@@ -38,7 +38,7 @@ const RouteBar = createVisualComponent({
       { children: <Lsi import={importLsi} path={["Menu", "lokace"]} />, onClick: () => setRoute("lokace"), icon: "fa-solid fa-bed" },
       {
         children: <Lsi import={importLsi} path={["Menu", "about"]} />,
-        onClick: () => setRoute("about"),
+        onClick: () => setRoute("about"), icon: "mdi-information-outline",
         collapsed: true,
       },
     ];

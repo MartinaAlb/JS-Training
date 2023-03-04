@@ -117,7 +117,6 @@ export const Tile = createVisualComponent({
       >
         {(tile) => (
           <div className={Css.content()}>
-
               <Text
                 category="interface"
                 segment="content"
