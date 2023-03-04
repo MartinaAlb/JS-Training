@@ -16,6 +16,10 @@
         "trip": {
           "realization": "dao/TripMongo",
           "maxNoi": 1000
+        },
+        "participant": {
+          "realization": "dao/ParticipantMongo",
+          "maxNoi": 1000
         }
       }
     },

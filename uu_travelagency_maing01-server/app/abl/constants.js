@@ -4,6 +4,7 @@ const Constants = {
     TRAVELAGENCY_MAIN: "travelagencyMain",
     LOCATION: "location",
     TRIP: "trip",
+    PARTICIPANT: "participant",
 
   },
 
