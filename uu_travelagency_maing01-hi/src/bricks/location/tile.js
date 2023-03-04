@@ -12,12 +12,12 @@ const Tile = createVisualComponent({
 
   //@@viewOn:propTypes
   propTypes: {
-    participant: PropTypes.shape({
-      firstname: PropTypes.string,
-      surname: PropTypes.string,
-      phoneNumber: PropTypes.string,
-      email: PropTypes.string,
-      idCardNumber: PropTypes.string
+    location: PropTypes.shape({
+      name: PropTypes.string,
+      address: PropTypes.string,
+      city: PropTypes.string,
+      country: PropTypes.string,
+      phoneNumber: PropTypes.string
     })
   },
   //@@viewOff:propTypes
@@ -40,25 +40,27 @@ const Tile = createVisualComponent({
     return (
       <Box {...elementProps}>
         <div>
-        <Text category="interface" segment="title" type="minor" colorScheme="building" >
-          <Icon icon="mdi-account" /> {props.participant.firstname} {props.participant.surname}
-        </Text>
-      </div>
+          <Text>{props.location.name}</Text>
+        </div>
+        <div>
+          <Text category="interface" segment="title" type="minor" colorScheme="building" >
+            <Icon icon="mdi-account" /> {props.location.country}
+          </Text>
+        </div>
         <Line significance="subdued" />
         <div>
           <Text category="interface" segment="content" type="medium" colorScheme="building">
-            <Icon icon="mdi-phone" /> {props.participant.phoneNumber}
+            {props.location.city}
           </Text>
         </div>
-
-          <div>
+        <div>
           <Text category="interface" segment="content" type="medium" colorScheme="building">
-            <Icon icon="mdi-email" /> {props.participant.email}
+            {props.location.address}
           </Text>
-          </div>
-            <div>
+        </div>
+        <div>
           <Text category="interface" segment="content" type="medium" colorScheme="building">
-            <Icon icon="mdi-passport-biometric" /> {props.participant.idCardNumber}
+            {props.location.phoneNumber}
           </Text>
         </div>
       </Box>

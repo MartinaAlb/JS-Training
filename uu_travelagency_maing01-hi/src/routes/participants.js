@@ -5,7 +5,6 @@ import Plus4U5Elements from "uu_plus4u5g02-elements";
 import { withRoute } from "uu_plus4u5g02-app";
 import Tile from "../bricks/participant/tile";
 import ListProvider from "../bricks/participant/list-provider";
-
 import Config from "./config/config.js";
 import WelcomeRow from "../bricks/welcome-row.js";
 import RouteBar from "../core/route-bar.js";
