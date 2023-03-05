@@ -1,4 +1,4 @@
-const tripCreateDtoInType = shape({
+const locationCreateDtoInType = shape({
   name: string(255).isRequired(),
   address: string(4000),
   city: string(40),

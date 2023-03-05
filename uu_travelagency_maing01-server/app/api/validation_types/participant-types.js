@@ -1,4 +1,4 @@
-const tripCreateDtoInType = shape({
+const participantCreateDtoInType = shape({
   firsname: string(255).isRequired(),
   lastname: string(40),
   phone: string(40),
