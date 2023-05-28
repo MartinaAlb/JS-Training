@@ -120,7 +120,7 @@ const Content = createVisualComponent({
       <div {...attrs}>
         <Line significance="subdued" />
 
-        <Grid templateColumns={{ xs: "repeat(12, 1fr)" }}>
+        <Grid templateColumns={{ m: "repeat(12, 1fr)" }}>
           <Grid.Item colSpan={4}>
             <InfoLine>
               <Icon icon={"fa-solid fa-bed"}/> {trip.location.name}
